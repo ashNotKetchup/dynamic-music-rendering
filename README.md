@@ -1,5 +1,6 @@
 # dynamic-music-rendering
-The thesis project for my masters in Sonic Arts at Goldsmiths, UOL. In this project I want to explore the ways in which music endpoints can be made less concrete. 
+
+The thesis project for my master's in Sonic Arts at Goldsmiths, UOL. In this project, I want to explore the ways music endpoints can be made less concrete. 
 
 ## My Idea
 
@@ -39,7 +40,7 @@ This project explores how the idea of dynamic music rendering might be applied i
 
 ### Music Consumption
 
-Example: Stem Player (TODO: add link to yeezy/teenage engineering)
+Example: Stem Player (TODO: add a link to yeezy/teenage engineering)
 
 ```mermaid
   flowchart TD;
