@@ -1,10 +1,10 @@
 # Table of contents
 
+* [README](README.md)
 * [About This Project](projectProposal.md)
-
-* [Workshops with artists](Reflection/README.md)
-    * [May 26th With Bror Havnes](Reflection/text/reflection_05_26_bror.md)
-    * [GitBook is nice](part1/gitbook.md)
-* [Part II](part2/README.md)
-    * [We love feedback](part2/feedback_please.md)
-    * [Better tools for authors](part2/better_tools.md)
+* [Workshops with artists](workshops-with-artists/README.md)
+  * [May 26th With Bror Havnes](Reflection/text/reflection\_05\_26\_bror.md)
+  * [GitBook is nice](workshops-with-artists/gitbook-is-nice.md)
+* [Part II](part-ii/README.md)
+  * [We love feedback](part-ii/we-love-feedback.md)
+  * [Better tools for authors](part-ii/better-tools-for-authors.md)
