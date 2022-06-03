@@ -11,7 +11,7 @@ When....(history of boid algorithm/other flocking algorithms), (they) outlined h
 
 these rules being....
 
-seperation (steer to avoid crowding local flockmates)
+separation (steer to avoid crowding local flockmates)
 alignmenet: steer towards the average heading of local flockmates
 cohesion: steer to move towards the average position (COM) of local flockmates
 
