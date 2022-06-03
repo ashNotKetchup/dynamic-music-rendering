@@ -5,6 +5,7 @@
   * [Emergent Behaviour](concepts/emergentBehaviour.md)
   * [Mapping Features](concepts/featureDetermination.md)
   * [Variable Scoping In Ensemble Performance](concepts/globalVariablesAndScoping.md)
+  * [Geometric Projection](concepts/geometric-projection.md)
 * [System Application](system-application/README.md)
   * [L-Systems](system-application/l-systems.md)
   * [Flocking Behaviours](soundSystems/boidAsInstruction.md)
