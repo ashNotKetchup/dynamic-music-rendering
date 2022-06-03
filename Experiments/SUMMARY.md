@@ -3,14 +3,14 @@
 * [README](README.md)
 * [About This Project](projectProposal.md)
 
-* [Concepts]
+* Concepts
     * [Emergent Behaviour](concepts/emergentBehaviour.md)
     * [Mapping Features](concepts/featureDetermination.md)
     * [Variable Scoping In Ensemble Performance](concepts/globalVariablesAndScoping.md)
   
-* [System Application]
+* System Application
     * [Flocking Behaviours](soundSystems/boidAsInstruction.md)
 
-* [Workshops with artists](Reflection/README.md)
+* Workshops with artists
     * [May 26th With Bror Havnes](Reflection/text/reflection_05_26_bror.md)
 
