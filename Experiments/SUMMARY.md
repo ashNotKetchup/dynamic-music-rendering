@@ -1,5 +1,6 @@
 # Table of contents
 
+* [README](README.md)
 * [About This Project](projectProposal.md)
 
 * [Concepts]
