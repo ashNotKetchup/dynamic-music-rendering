@@ -1,7 +1,6 @@
 # Table of contents
 
-* [README](README.md)
-* [About This Project](projectProposal.md)
+* [About This Project](README.md)
 * [Concepts](concepts/README.md)
   * [Emergent Behaviour](concepts/emergentBehaviour.md)
   * [Mapping Features](concepts/featureDetermination.md)
