@@ -6,6 +6,7 @@
   * [Mapping Features](concepts/featureDetermination.md)
   * [Variable Scoping In Ensemble Performance](concepts/globalVariablesAndScoping.md)
 * [System Application](system-application/README.md)
+  * [L-Systems](system-application/l-systems.md)
   * [Flocking Behaviours](soundSystems/boidAsInstruction.md)
 * [Workshops with artists](workshops-with-artists/README.md)
   * [May 26th With Bror Havnes](Reflection/text/reflection\_05\_26\_bror.md)
