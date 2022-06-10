@@ -2,6 +2,7 @@
 
 * [About This Project](README.md)
 * [Concepts](concepts/README.md)
+  * [Image categorisation](concepts/image-categorisation.md)
   * [Emergent Behaviour](concepts/emergentBehaviour.md)
   * [Mapping Features](concepts/featureDetermination.md)
   * [Variable Scoping In Ensemble Performance](concepts/globalVariablesAndScoping.md)
@@ -13,3 +14,4 @@
   * [May 26th With Bror Havnes](Reflection/text/reflection\_05\_26\_bror.md)
 * [References](references/README.md)
   * [Graphic Scores](references/graphic-scores.md)
+* [Proposal](proposal.md)
