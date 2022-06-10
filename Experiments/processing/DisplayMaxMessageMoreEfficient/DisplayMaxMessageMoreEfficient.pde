@@ -18,7 +18,7 @@ PFont f;
 
 int canvasPadding = 72;
 
-
+textMode(SHAPE)
 
 void setup() {
 
@@ -42,15 +42,16 @@ void setup() {
    */
   myRemoteLocation = new NetAddress("127.0.0.1",12000);
   
-  oscP5.plug(this,"dispList","/list");
+  oscP5.plug(this,"dispMsg","/list");
+  
+  //test:
+  fitText(dispStr, 0, 0, 600, 600);
 } 
 
-public void dispList(String noteList){
-  
-  println(noteList);
-   // Assign to text on the screen
-   dispStr = noteList.toString();
-  
+public void dispMsg(float note){
+  println(note);
+  // Assign to text on the screen
+  dispStr = str(note);
   
 }
 void draw() {
@@ -91,7 +92,7 @@ void fitText(String text, int topLeftx, int topLefty, int boxWidth, int boxHeigh
       searching = false;
     }
   }
-  //println("Best size: "+ bestSize);
+  println("Best size: "+ bestSize);
 
 
   textSize(bestSize);
