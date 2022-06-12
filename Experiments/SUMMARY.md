@@ -14,4 +14,5 @@
   * [May 26th With Bror Havnes](Reflection/text/reflection\_05\_26\_bror.md)
 * [References](references/README.md)
   * [Graphic Scores](references/graphic-scores.md)
-* [Proposal](proposal.md)
+* [Proposal](proposal/README.md)
+  * [Installation Idea](proposal/installation-idea.md)
