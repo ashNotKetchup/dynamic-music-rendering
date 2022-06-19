@@ -16,3 +16,4 @@
   * [Graphic Scores](references/graphic-scores.md)
 * [Proposal](proposal/README.md)
   * [Installation Idea](proposal/installation-idea.md)
+  * [N-Dimensional Conceptual Mapping](proposal/n-dimensional-conceptual-mapping.md)
