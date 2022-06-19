@@ -28,9 +28,12 @@ With an increased dimension (more descriptor types as well as more descriptors),
 
 We can take an object-oriented approach to elements of our muso-conceptual set. The technical challenge is outlined as follows:
 
-* Define geometric positions in N-dimensional matrix
+* Define geometric positions in an N-dimensional matrix. We Structure it as an object with:
+  * Itself (an object containing the actual object)
+  * Its type
+  * Its position in ‘space’
 * Define mapping rules
 * Define parametric conditions for inclusion
-* Take all the included elements, and their relevant mappings, then generate a map
+* When its point in space satisfies the conditions, it is aggregated into a list, and then its connections are used to draw a map
 
 With this system, we can outline a range of musical systems, such as those of Lewis or Cage. We might even include these systems as subsets of a larger systematic piece.
