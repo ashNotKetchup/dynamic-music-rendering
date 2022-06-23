@@ -36,4 +36,10 @@ We can take an object-oriented approach to elements of our muso-conceptual set. 
 * Define parametric conditions for inclusion
 * When its point in space satisfies the conditions, it is aggregated into a list, and then its connections are used to draw a map
 
-With this system, we can outline a range of musical systems, such as those of Lewis or Cage. We might even include these systems as subsets of a larger systematic piece.
+With such a system, we could outline a range of musical systems, such as those of Lewis or Cage. We might even include these systems as subsets of a larger systematic piece.
+
+### [Attempting this in D3](https://observablehq.com/d/eb5e872bc88d9cd5)
+
+My attempts at implementing such a system in D3.js (Data-Driven Documents). Click the link above to see the most up to date version.
+
+![A simple attempt at my demo system, achieved by editing the loaded CSV directly. The Blue links are encouraged, while the orange is discouraged](<../.gitbook/assets/Screenshot 2022-06-23 at 11.46.37.png>)
