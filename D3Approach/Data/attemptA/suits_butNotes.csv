@@ -2,3 +2,8 @@ source,target,type
 A,C,resolved
 A,E,suit
 E,G,suit
+A,B,licensing
+F,E,suit
+D,E,suit
+E,D,licensing
+A,A,suit
