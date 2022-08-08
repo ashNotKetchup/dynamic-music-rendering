@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 628.0, 123.0, 640.0, 480.0 ],
+		"rect" : [ 37.0, 142.0, 754.0, 570.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -69,7 +69,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 3,
 					"outlettype" : [ "bang", "", "bang" ],
-					"patching_rect" : [ 203.785721242427826, 288.0, 40.0, 22.0 ],
+					"patching_rect" : [ 184.785721242427826, 348.0, 40.0, 22.0 ],
 					"text" : "t b l b"
 				}
 
@@ -81,7 +81,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 285.0, 316.0, 47.0, 22.0 ],
+					"patching_rect" : [ 266.0, 376.0, 47.0, 22.0 ],
 					"text" : "setall 0"
 				}
 
@@ -93,7 +93,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 203.785721242427826, 259.714285165071487, 118.0, 22.0 ],
+					"patching_rect" : [ 184.785721242427826, 319.714285165071487, 118.0, 22.0 ],
 					"text" : "setcell $1 $2 val 255"
 				}
 
@@ -106,7 +106,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "jit_matrix", "" ],
-					"patching_rect" : [ 203.785721242427826, 319.0, 68.714278757572174, 35.0 ],
+					"patching_rect" : [ 184.785721242427826, 379.0, 68.714278757572174, 35.0 ],
 					"text" : "jit.matrix 1 char 20 20"
 				}
 
@@ -118,7 +118,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "jit_matrix", "" ],
-					"patching_rect" : [ 132.0, 371.200000047683716, 156.800000190734863, 123.799999952316284 ],
+					"patching_rect" : [ 113.0, 431.200000047683716, 156.800000190734863, 123.799999952316284 ],
 					"sync" : 1
 				}
 
@@ -130,8 +130,8 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 49.0, 323.0, 50.0, 22.0 ],
-					"text" : "6 3"
+					"patching_rect" : [ 30.0, 383.0, 50.0, 22.0 ],
+					"text" : "-3 -4"
 				}
 
 			}
@@ -331,8 +331,6 @@
 					"saved_object_attributes" : 					{
 						"autostart" : 1,
 						"defer" : 0,
-						"node_bin_path" : "",
-						"npm_bin_path" : "",
 						"watch" : 1
 					}
 ,
@@ -523,7 +521,7 @@
 			}
 , 			{
 				"name" : "game.js",
-				"bootpath" : "~/Desktop/n4mDemo",
+				"bootpath" : "~/Documents/GitHub/dynamic-music-rendering/n4mDemo",
 				"patcherrelativepath" : ".",
 				"type" : "TEXT",
 				"implicit" : 1

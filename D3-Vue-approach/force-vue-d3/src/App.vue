@@ -2,7 +2,36 @@
 import HelloWorld from './components/HelloWorld.vue'
 import TheWelcome from './components/TheWelcome.vue'
 import charts from './components/charts.vue'
+
+import * as d3 from 'd3'
 </script>
+
+
+<script>
+export default {
+  name: "app",
+  components: {
+    HelloWorld,
+    charts
+  },
+  data: function() {
+    return {
+      loadData: []
+    };
+  },
+  mounted() {
+    console.log("App loaded");
+    this.fetchData();
+  },
+  methods: {
+    async fetchData() {
+      let data = await d3.json("force-vue-d3/src/assets/tweets.json");
+      this.loadData = data;
+    }
+  }
+};
+</script>
+
 
 <template>
   <header>
