@@ -8,6 +8,7 @@ by Tom Igoe
 */
 
 const Max = require('max-api');
+var _ = require('lodash');
 
 //kill all servers:
 // const kill = require('kill-port');
@@ -63,7 +64,7 @@ function broadcast(data) {
 wss.on('connection', handleConnection);
 
 Max.addHandler("send", (arg) => {
-		broadcast(graph1);
+		broadcast(graph2.data);
 	});
 
 
@@ -72,7 +73,66 @@ const graph1 = ({
 nodes: [
 	{id: "a"},
 	{id: "b"},
-	{id: "hello I'm here to test u"}
+	{id: "hello I'm here to test u"},
+	{id: "hello I'm new!"}
 ],
-links: [{source: "a", target: "b"},]
+links: [{source: "a", target: "b"},{source: "a", target: "hello I'm new!"}]
 })
+
+
+class MapData {
+  constructor(links) {
+    this.links = links;
+  }
+  //getter
+  get nodes() {
+    return this.makeNodes();
+  }
+
+  //get myself (the whole object)
+  get data(){
+	return {nodes: this.nodes, links: this.links};
+  }
+
+  //method
+  makeNodes(){
+	//get all sources
+	let sources = this.links.map(x => x.source);
+	//get all targets
+	let targets = this.links.map(x => x.target);
+	//join and then remove duplicates
+	let uniques = _.uniq(sources.concat(targets));
+
+	//put in object
+	let newNodes = uniques.map(x => {
+		return {id: x}
+	});
+
+	return newNodes;
+  }
+}
+
+var graph2 = new MapData([{source: "a", target: "b"},{source: "a", target: "hello I'm new!"}]);
+
+
+// var graph2 = ({
+
+// })
+
+//get all sources
+let sources = graph1.links.map(x => x.source);
+//get all targets
+let targets = graph1.links.map(x => x.target);
+//join and then remove duplicates
+let uniques = _.uniq(sources.concat(targets));
+
+//put in object
+let newNodes = uniques.map(x => {
+	return {id: x}
+});
+
+
+
+// Max.outlet(JSON.stringify(graph2.data.nodes));
+
+

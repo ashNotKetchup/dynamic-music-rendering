@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 65.0, 176.0, 310.0, 455.0 ],
+		"rect" : [ 36.0, 87.0, 923.0, 614.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -40,6 +40,30 @@
 		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
+					"id" : "obj-13",
+					"maxclass" : "message",
+					"numinlets" : 2,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 447.0, 65.0, 145.0, 22.0 ],
+					"text" : "script npm i --save lodash"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-5",
+					"maxclass" : "message",
+					"numinlets" : 2,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 1087.666666626930237, 117.5, 63.0, 22.0 ],
+					"text" : "script stop"
+				}
+
+			}
+, 			{
+				"box" : 				{
 					"id" : "obj-30",
 					"maxclass" : "dict.view",
 					"numinlets" : 1,
@@ -55,8 +79,8 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 172.000005125999451, 264.00000786781311, 158.000003218650818, 22.0 ],
-					"text" : "dictionary u180008776"
+					"patching_rect" : [ 182.280378878116608, 239.700942635536194, 158.000003218650818, 22.0 ],
+					"text" : "dictionary u384000921"
 				}
 
 			}
@@ -79,7 +103,6 @@
 					"numinlets" : 1,
 					"numoutlets" : 0,
 					"patching_rect" : [ 960.166666626930237, 13.0, 145.333334922790527, 20.0 ],
-					"presentation_linecount" : 2,
 					"text" : "Receive and display data"
 				}
 
@@ -134,7 +157,7 @@
 					"numoutlets" : 1,
 					"offset" : [ 0.0, 0.0 ],
 					"outlettype" : [ "bang" ],
-					"patching_rect" : [ 451.333336710929871, 304.238094449043274, 423.809523582458496, 336.666665554046631 ],
+					"patching_rect" : [ 451.333336710929871, 304.238094449043274, 400.0, 220.0 ],
 					"viewvisibility" : 1
 				}
 
@@ -157,7 +180,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 26.5, 141.5, 150.0, 60.0 ],
+					"patching_rect" : [ 26.5, 141.5, 155.0, 60.0 ],
 					"text" : " Can also be used to send dictionaries, which will automatically be converted to JSON."
 				}
 
@@ -193,7 +216,6 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 845.166666626930237, 99.5, 129.0, 22.0 ],
-					"presentation_linecount" : 2,
 					"text" : "script npm i live-server"
 				}
 
@@ -210,8 +232,6 @@
 					"saved_object_attributes" : 					{
 						"autostart" : 0,
 						"defer" : 0,
-						"node_bin_path" : "",
-						"npm_bin_path" : "",
 						"watch" : 0
 					}
 ,
@@ -299,6 +319,8 @@
 					"saved_object_attributes" : 					{
 						"autostart" : 0,
 						"defer" : 0,
+						"node_bin_path" : "",
+						"npm_bin_path" : "",
 						"watch" : 0
 					}
 ,
@@ -341,6 +363,13 @@
 			}
 , 			{
 				"patchline" : 				{
+					"destination" : [ "obj-1", 0 ],
+					"source" : [ "obj-13", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
 					"destination" : [ "obj-6", 0 ],
 					"source" : [ "obj-2", 1 ]
 				}
@@ -371,6 +400,13 @@
 				"patchline" : 				{
 					"destination" : [ "obj-2", 0 ],
 					"source" : [ "obj-4", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-2", 0 ],
+					"source" : [ "obj-5", 0 ]
 				}
 
 			}
