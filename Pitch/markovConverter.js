@@ -15,6 +15,17 @@ let links = [];
 let nodes = [];
 let data ={};
 
+//Example object structure:
+const graph1 = ({
+    nodes: [
+      {id: "a"},
+      {id: "b"},
+      {id: "hello I'm here to test u"}
+    ],
+    links: [{source: "a", target: "b"},]
+  })
+
+
 // Getting and setting dicts is an asynchronous process and the API function
 // calls all return a Promise. We use the async/await syntax here in order
 // to handle the async behaviour gracefully.
@@ -133,7 +144,11 @@ maxApi.addHandlers({
         }
 await maxApi.post(links);
 data = {nodes: nodes, links: links};
-maxApi.outlet(data);
+
+const dict = await maxApi.setDict(DATA_ID, data);
+await maxApi.outlet(dict);
+
+// maxApi.outlet(data);
     }
 
 });

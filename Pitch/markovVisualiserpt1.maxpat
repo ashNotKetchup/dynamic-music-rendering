@@ -40,6 +40,129 @@
 		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
+					"id" : "obj-13",
+					"maxclass" : "button",
+					"numinlets" : 1,
+					"numoutlets" : 1,
+					"outlettype" : [ "bang" ],
+					"parameter_enable" : 0,
+					"patching_rect" : [ 623.0, 549.0, 24.0, 24.0 ]
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-3",
+					"maxclass" : "dict.view",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 538.0, 670.0, 222.0, 215.0 ]
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"data" : 					{
+						"nodes" : [ 							{
+								"id" : "0"
+							}
+, 							{
+								"id" : "2"
+							}
+, 							{
+								"id" : "4"
+							}
+, 							{
+								"id" : "5"
+							}
+, 							{
+								"id" : "7"
+							}
+, 							{
+								"id" : "9"
+							}
+ ],
+						"links" : [ 							{
+								"source" : "0",
+								"target" : "0",
+								"weight" : 0.5
+							}
+, 							{
+								"source" : "0",
+								"target" : "7",
+								"weight" : 0.5
+							}
+, 							{
+								"source" : "2",
+								"target" : "0",
+								"weight" : 0.375
+							}
+, 							{
+								"source" : "2",
+								"target" : "2",
+								"weight" : 0.5
+							}
+, 							{
+								"source" : "2",
+								"target" : "7",
+								"weight" : 0.125
+							}
+, 							{
+								"source" : "4",
+								"target" : "2",
+								"weight" : 0.5
+							}
+, 							{
+								"source" : "4",
+								"target" : "4",
+								"weight" : 0.5
+							}
+, 							{
+								"source" : "5",
+								"target" : "4",
+								"weight" : 0.5
+							}
+, 							{
+								"source" : "5",
+								"target" : "5",
+								"weight" : 0.5
+							}
+, 							{
+								"source" : "7",
+								"target" : "5",
+								"weight" : 0.333333333333333
+							}
+, 							{
+								"source" : "7",
+								"target" : "7",
+								"weight" : 0.5
+							}
+, 							{
+								"source" : "9",
+								"target" : "7",
+								"weight" : 0.5
+							}
+ ]
+					}
+,
+					"id" : "obj-1",
+					"maxclass" : "newobj",
+					"numinlets" : 2,
+					"numoutlets" : 4,
+					"outlettype" : [ "dictionary", "", "", "" ],
+					"patching_rect" : [ 538.0, 630.948691129684448, 179.0, 22.0 ],
+					"saved_object_attributes" : 					{
+						"embed" : 1,
+						"parameter_enable" : 0,
+						"parameter_mappable" : 0
+					}
+,
+					"text" : "dict current-data.dict @embed 1"
+				}
+
+			}
+, 			{
+				"box" : 				{
 					"id" : "obj-50",
 					"maxclass" : "comment",
 					"numinlets" : 1,
@@ -56,7 +179,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 194.0, 777.948691129684448, 150.0, 33.0 ],
+					"patching_rect" : [ 111.0, 864.948691129684448, 150.0, 33.0 ],
 					"text" : "Just need to integrate this with my server situ..."
 				}
 
@@ -67,7 +190,7 @@
 					"maxclass" : "dict.view",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 194.0, 697.948691129684448, 149.450551867485046, 53.84615159034729 ]
+					"patching_rect" : [ 173.250012218952179, 675.948691129684448, 232.450551867485046, 183.84615159034729 ]
 				}
 
 			}
@@ -132,7 +255,7 @@
 					"numoutlets" : 1,
 					"offset" : [ 0.0, 0.0 ],
 					"outlettype" : [ "bang" ],
-					"patching_rect" : [ 349.0, 681.0, 400.0, 220.0 ],
+					"patching_rect" : [ 377.0, 727.0, 400.0, 220.0 ],
 					"viewvisibility" : 1
 				}
 
@@ -184,8 +307,6 @@
 					"saved_object_attributes" : 					{
 						"autostart" : 0,
 						"defer" : 0,
-						"node_bin_path" : "",
-						"npm_bin_path" : "",
 						"watch" : 1
 					}
 ,
@@ -379,7 +500,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 427.0, 210.0, 153.0, 87.0 ],
+					"patching_rect" : [ 427.0, 210.0, 156.0, 87.0 ],
 					"text" : "Period of markov is based on number of notes, rather than time, links to perception of time, and to the machine as the point of audiation...."
 				}
 
@@ -1029,6 +1150,13 @@
  ],
 		"lines" : [ 			{
 				"patchline" : 				{
+					"destination" : [ "obj-3", 0 ],
+					"source" : [ "obj-1", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
 					"destination" : [ "obj-19", 0 ],
 					"source" : [ "obj-11", 0 ]
 				}
@@ -1038,6 +1166,13 @@
 				"patchline" : 				{
 					"destination" : [ "obj-19", 0 ],
 					"source" : [ "obj-12", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-1", 0 ],
+					"source" : [ "obj-13", 0 ]
 				}
 
 			}
