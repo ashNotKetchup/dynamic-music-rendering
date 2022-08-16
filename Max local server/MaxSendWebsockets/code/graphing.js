@@ -21,11 +21,11 @@ let connectButton;
 function setup() {
   // get all the DOM elements that need listeners:
   incomingSpan = document.getElementById('incoming');
-  outgoingText = document.getElementById('outgoing');
+  // outgoingText = document.getElementById('outgoing');
   connectionSpan = document.getElementById('connection');
   connectButton = document.getElementById('connectButton');
   // set the listeners:
-  outgoingText.addEventListener('change', sendMessage);
+  // outgoingText.addEventListener('change', sendMessage);
   connectButton.addEventListener('click', changeConnection);
   openSocket(serverURL);
 }
@@ -69,10 +69,6 @@ function readIncomingMessage(event) {
   console.log(JSON.parse(event.data));
   // console.log('event: ' + (event.data[data]));
 
-
-  //I should limit this to be within my range of graphs.
-  //next 
-  
   updateDataAndGraph(JSON.parse(event.data));
 
 }
@@ -112,7 +108,7 @@ const graph2 = ({
     links: [
       {source: "a", target: "b"},
       {source: "b", target: "c"},
-      {source: "c", target: "a"}
+      {source: "c", target: "a", weight:0.5}
     ]
   })
 
@@ -151,8 +147,8 @@ class MyGraph{
     //create svg
     // console.log('creating svg')
     this.svg = d3.select("svg");
-    this.width = 300;
-    this.height = 300;
+    this.width = window.innerWidth;
+    this.height = window.innerHeight;
 
     this.svg
         .attr("width", this.width)
@@ -260,7 +256,8 @@ class MyGraph{
                     
                 ogGraph.link = ogGraph.link   
                 .data(links, d => `${d.source.id}\t${d.target.id}`)
-                    .join("line");
+                    .join("line")
+                    // .style("stroke-width", d => d.weight*3);
 
                 //add labels to the graph
                 ogGraph.label = ogGraph.label
@@ -271,7 +268,8 @@ class MyGraph{
                 //add link labels to graph
                 ogGraph.linkLabel = ogGraph.linkLabel
                 .data(links, d=> d.target.id)
-                .join(enter => enter.append("text").text(d => d.target.id));
+                // .join(enter => enter.append("text").text(d => d.weight));
+                
                 }
             });
     }
@@ -315,7 +313,7 @@ function updateDataAndGraph(selection){
 // updateDataAndGraph();
 
 
-//define my graph to render to
+//define my graph to render to, redo this on window resize...or just refresh?
 graf = new MyGraph();
 
 //define my selection

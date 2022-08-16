@@ -97,28 +97,12 @@ maxApi.addHandlers({
     bang: async () =>{
         const markov = await maxApi.getDict(MARKOV_ID);
         const stateList = await Object.keys(markov.transitions);
-        //make a node for each possible state
-        await stateList.forEach(e => {
-            //check if dict object is already in array nodes
-            if (nodes.some((x)=> _.isEqual(x.id, e))==false){
-            //if not, add it to the array of nodes, and post the number of nodes, not sure about format
-            //currently going for a list of objs {id: "id"}
-             maxApi.post(nodes.push({id: e}));
-
-            // //add this array to the obj
-            // initialDict.nodes=nodes;
-            }
-            //iff already in use,
-            else{
-                 maxApi.post('been there buddy!');
-            }
-        });
-        //post the resultant list
-    //   await maxApi.post(nodes);
-
 
       //make a weighted link for every connection (unidirectional for now)
       transitions = await markov.transitions;
+
+      //wipe everything before restart
+      nodes = [];
       links = [];
         for (const [state, probs] of Object.entries(transitions)) {
             //for the key object pairs
@@ -142,7 +126,52 @@ maxApi.addHandlers({
             // }
         
         }
-await maxApi.post(links);
+
+
+        await maxApi.post(links);
+
+        //make a node for each possible state needed
+        //sources first
+        await links.forEach(e => {
+            //check if dict object is already in array nodes
+            
+            if (nodes.some((x)=> _.isEqual(x.id, e.source))==false){
+            //if not, add it to the array of nodes, and post the number of nodes, not sure about format
+            //currently going for a list of objs {id: "id"}
+             maxApi.post(nodes.push({id: e.source}));
+
+            // //add this array to the obj
+            // initialDict.nodes=nodes;
+            }
+            //iff already in use,
+            else{
+                 maxApi.post('been there buddy!');
+            }
+        })
+
+        await links.forEach(e => {
+            //check if dict object is already in array nodes
+            
+            if (nodes.some((x)=> _.isEqual(x.id, e.target))==false){
+            //if not, add it to the array of nodes, and post the number of nodes, not sure about format
+            //currently going for a list of objs {id: "id"}
+             maxApi.post(nodes.push({id: e.target}));
+
+            // //add this array to the obj
+            // initialDict.nodes=nodes;
+            }
+            //iff already in use,
+            else{
+                 maxApi.post('been there buddy!');
+            }
+        })
+        
+        
+        ;
+        //post the resultant list
+    //   await maxApi.post(nodes);
+
+
 data = {nodes: nodes, links: links};
 
 const dict = await maxApi.setDict(DATA_ID, data);
