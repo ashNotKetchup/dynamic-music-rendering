@@ -251,13 +251,15 @@ class MyGraph{
             
                     .data(nodes, d => d.id)
                     .join(enter => enter.append("circle")
-                    .attr("r", 18)
+                    .attr("r", 15)
                     .attr("fill", d => color(d.id)));
                     
                 ogGraph.link = ogGraph.link   
                 .data(links, d => `${d.source.id}\t${d.target.id}`)
                     .join("line")
-                    // .style("stroke-width", d => d.weight*3);
+                    //Exponentially scale the line so that weights dramatically affect its visibility
+                    .attr("stroke-width", d => 2.7^(9*d.weight));
+                    
 
                 //add labels to the graph
                 ogGraph.label = ogGraph.label
