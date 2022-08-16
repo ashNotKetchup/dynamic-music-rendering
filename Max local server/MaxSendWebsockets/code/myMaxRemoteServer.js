@@ -63,7 +63,17 @@ function broadcast(data) {
 // listen for clients and handle them:
 wss.on('connection', handleConnection);
 
+
+
+Max.addHandlers({
+	bang: async () =>{
+        const data = await Max.getDict(DATA_ID);
+		await broadcast(data);
+	}
+})
+
 Max.addHandler("send", (arg) => {
+
 		broadcast(graph2.data);
 	});
 
