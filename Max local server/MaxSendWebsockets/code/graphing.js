@@ -144,7 +144,12 @@ let color = d3.scaleOrdinal(d3.schemeTableau10);
 class MyGraph{
     constructor(){ 
 
+    //Arc Function:
+
+
+
     //create svg
+
     // console.log('creating svg')
     this.svg = d3.select("svg");
     // Per-type markers, as they don't inherit styles.
@@ -157,7 +162,9 @@ this.svg.append("defs").append("marker")
     .attr("markerHeight", 6)
     .attr("orient", "auto")
   .append("path")
-    .attr("d", "M0,-5L10,0L0,5");
+    // .attr("d", "M0,-5L10,0L0,5")
+      //  .attr("fill", "blue")
+      ;
 
     this.width = window.innerWidth;
     this.height = window.innerHeight;
@@ -182,7 +189,8 @@ this.svg.append("defs").append("marker")
             this.link.attr("x1", d => d.source.x)
                 .attr("y1", d => d.source.y)
                 .attr("x2", d => d.target.x)
-                .attr("y2", d => d.target.y);
+                .attr("y2", d => d.target.y)
+                .attr("d", this.linkArc);
 
             //get position and pass it to text
 
@@ -200,7 +208,11 @@ this.svg.append("defs").append("marker")
     this.link = this.svg.append("g")
         .attr("stroke", "#000")
         .attr("stroke-width", 1.5)
-        .selectAll("line");
+        .selectAll("path")
+            .append("path");
+      // .attr("d", "M0,-5L10,0L0,5");
+
+
 
     this.node = this.svg.append("g")
         .attr("stroke", "#fff")
@@ -275,10 +287,13 @@ this.svg.append("defs").append("marker")
                     
                 ogGraph.link = ogGraph.link   
                 .data(links, d => `${d.source.id}\t${d.target.id}`)
-                    .join("line")
+                    .join("path")
                     //Exponentially scale the line so that weights dramatically affect its visibility
                     .attr("stroke-width", d => 2.7^(9*d.weight))
-                    .attr("marker-end", "url(#marker)");
+                    .attr("marker-end", "url(#marker)")
+                       .attr("fill", "none")
+      //                   .join("path")
+      .attr("stroke", d => color(d.source.id));
                     
 
                 //add labels to the graph
@@ -296,6 +311,14 @@ this.svg.append("defs").append("marker")
             });
     }
 
+    linkArc(d) {
+      // console.log("link called" + d.source.x)
+  const r = Math.hypot(d.target.x - d.source.x, d.target.y - d.source.y);
+  return `
+    M${d.source.x},${d.source.y}
+    A${r},${r} 0 0,1 ${d.target.x},${d.target.y}
+  `;
+}
 
         // // Terminate the force layout when this cell re-runs.
         // invalidation.then(() => simulation.stop());
