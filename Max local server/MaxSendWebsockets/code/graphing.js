@@ -147,6 +147,18 @@ class MyGraph{
     //create svg
     // console.log('creating svg')
     this.svg = d3.select("svg");
+    // Per-type markers, as they don't inherit styles.
+this.svg.append("defs").append("marker")
+    .attr("id", "marker")
+    .attr("viewBox", "0 -5 10 10")
+    .attr("refX", 15)
+    .attr("refY", -1.5)
+    .attr("markerWidth", 6)
+    .attr("markerHeight", 6)
+    .attr("orient", "auto")
+  .append("path")
+    .attr("d", "M0,-5L10,0L0,5");
+
     this.width = window.innerWidth;
     this.height = window.innerHeight;
 
@@ -154,6 +166,7 @@ class MyGraph{
         .attr("width", this.width)
         .attr("height", this.height)
         .attr("viewBox", [-this.width / 2, -this.height / 2, this.width, this.height]);
+    
 
     this.simulation = d3.forceSimulation()
 
@@ -182,10 +195,12 @@ class MyGraph{
             }
         );
 
+    
+
     this.link = this.svg.append("g")
         .attr("stroke", "#000")
         .attr("stroke-width", 1.5)
-    .selectAll("line");
+        .selectAll("line");
 
     this.node = this.svg.append("g")
         .attr("stroke", "#fff")
@@ -247,6 +262,10 @@ class MyGraph{
                 //pause, add and then restart the sim?
                 ogGraph.simulation.alpha(1).restart();
 
+
+
+
+
                 ogGraph.node = ogGraph.node
             
                     .data(nodes, d => d.id)
@@ -258,7 +277,8 @@ class MyGraph{
                 .data(links, d => `${d.source.id}\t${d.target.id}`)
                     .join("line")
                     //Exponentially scale the line so that weights dramatically affect its visibility
-                    .attr("stroke-width", d => 2.7^(9*d.weight));
+                    .attr("stroke-width", d => 2.7^(9*d.weight))
+                    .attr("marker-end", "url(#marker)");
                     
 
                 //add labels to the graph
