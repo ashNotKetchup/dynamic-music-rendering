@@ -2,7 +2,7 @@
 	"name" : "MaxSendWebsockets",
 	"version" : 1,
 	"creationdate" : 3742656101,
-	"modificationdate" : 3742832562,
+	"modificationdate" : 3743610885,
 	"viewrect" : [ 7.0, 98.0, 300.0, 500.0 ],
 	"autoorganize" : 0,
 	"hideprojectwindow" : 0,
@@ -18,7 +18,15 @@
 
 		}
 ,
+		"media" : 		{
+
+		}
+,
 		"code" : 		{
+
+		}
+,
+		"externals" : 		{
 
 		}
 ,
