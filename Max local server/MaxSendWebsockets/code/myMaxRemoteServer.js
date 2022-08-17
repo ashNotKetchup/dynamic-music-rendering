@@ -27,6 +27,7 @@ var clients = new Array;         // list of client connections
 function handleConnection(client, request) {
 	Max.post("New Connection");        // you have a new client
 	clients.push(client);    // add this client to the clients array
+	Max.outlet("Reload")
 
 	function endClient() {
 		// when a client closes its connection

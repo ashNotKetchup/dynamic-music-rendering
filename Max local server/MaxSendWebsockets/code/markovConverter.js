@@ -102,8 +102,7 @@ maxApi.addHandlers({
       transitions = await markov.transitions;
 
       //remove null link
-    delete transitions.null;   
-// await maxApi.post("transitions" + transitions);
+        delete transitions.null;   
 
       //wipe everything before restart
       nodes = [];
@@ -180,6 +179,8 @@ data = {nodes: nodes, links: links};
 
 const dict = await maxApi.setDict(DATA_ID, data);
 await maxApi.outlet(dict);
+
+await maxApi.outlet("Reload")
 
 // maxApi.outlet(data);
     }
