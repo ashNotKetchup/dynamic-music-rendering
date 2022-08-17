@@ -1,5 +1,6 @@
 const maxApi = require("max-api");
 var _ = require('lodash');
+var tonal = require('tonal');
 const { max } = require("lodash");
 
 const NODE_ID = "current-node.dict";
@@ -109,7 +110,7 @@ maxApi.addHandlers({
       links = [];
         for (const [state, probs] of Object.entries(transitions)) {
             //for the key object pairs
-        maxApi.post(`${state}: ${probs}`);
+        // maxApi.post(`${state}: ${probs}`);
 
         //hardcoded to run states as numbers from 0 upwards, so i isnt just an index. This means that we cant use symbolic states now...
             //not checking for repeats since we reset eachtime, and it loops through a matrix...
@@ -117,7 +118,14 @@ maxApi.addHandlers({
                 
                 if (probs[i]>0){
                     //build link
-                    let link = {source: state, target: i.toString(), weight: probs[i]};
+
+                    //convert number into notenames
+                    stateNote = (tonal.Note.fromMidi(state+48));
+                    // tonal.Note.pc
+                    iNote = (tonal.Note.fromMidi(i+48))
+                    // tonal.Note.pc(tonal.Note.fromMidi(i+48));
+
+                    let link = {source: stateNote, target: iNote, weight: probs[i]};
                     links.push(link);
                 }
                 // maxApi.post("statelist " + stateList[i])

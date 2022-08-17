@@ -161,7 +161,7 @@ this.svg.append("defs").append("marker")
     .attr("markerWidth", 6)
     .attr("markerHeight", 6)
     .attr("orient", "auto")
-  .append("path")
+    .append("path")
     // .attr("d", "M0,-5L10,0L0,5")
       //  .attr("fill", "blue")
       ;
@@ -283,7 +283,8 @@ this.svg.append("defs").append("marker")
                     .data(nodes, d => d.id)
                     .join(enter => enter.append("circle")
                     .attr("r", 15)
-                    .attr("fill", d => color(d.id)));
+                    .attr("fill", d => color(d.id)))
+                    .attr("fill-opacity", 0.7);
                     
                 ogGraph.link = ogGraph.link   
                 .data(links, d => `${d.source.id}\t${d.target.id}`)
@@ -300,7 +301,10 @@ this.svg.append("defs").append("marker")
                 ogGraph.label = ogGraph.label
                 //needs to reference the specific data to update on change
                 .data(nodes, d=> d.id)
-                .join(enter => enter.append("text").text(d => d.id));
+                .join(enter => enter.append("text").text(d => d.id)       
+                .style('font-size', '40px')
+                .style('font-family', '"Open Sans", sans-serif')
+                .style('font-weight', '1000'));
                 
                 //add link labels to graph
                 ogGraph.linkLabel = ogGraph.linkLabel
