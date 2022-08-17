@@ -274,10 +274,6 @@ this.svg.append("defs").append("marker")
                 //pause, add and then restart the sim?
                 ogGraph.simulation.alpha(1).restart();
 
-
-
-
-
                 ogGraph.node = ogGraph.node
             
                     .data(nodes, d => d.id)

@@ -33,9 +33,18 @@
         <!--[if lt IE 7]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
+ <div id="main">
+            <div id="container">
+              <svg id="svg"></svg>
+            </div>
+          </div>
+
+
+        <div id = "description">
         <h1>Ov the Mark</h1>
         <h2>By Ashnotketchup</h2>
         <p>[Rules Here]</p>
+        </div>
         <!-- <br/> -->
         <!-- <p>Pick a dataset and watch the page respond! -->
 
@@ -56,7 +65,7 @@
         </form> -->
         <!--  -->
         
-        <div>
+        <div id ="status">
           <p>Websocket Status</p>
     Connected to server: <span id="connection">false</span><br>
     <input type="button" id="connectButton" value="Connect"><br>
@@ -64,11 +73,7 @@
     <!-- Outgoing message: <input type="text" id="outgoing"><br> -->
     Incoming message: <span id="incoming"></span><br>
   </div>
-        <div id="main">
-            <div id="container">
-              <svg id="svg"></svg>
-            </div>
-          </div>
+       
         <script src="graphing.js" ></script> 
         <!-- async defer the above? -->
     </body>
