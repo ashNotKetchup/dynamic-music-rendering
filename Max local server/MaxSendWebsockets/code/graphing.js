@@ -162,6 +162,8 @@ this.svg.append("defs").append("marker")
     .attr("markerHeight", 6)
     .attr("orient", "auto")
     .append("path")
+    .attr("fill", color)
+    .attr("d", "M0,-5L10,0L0,5")
     // .attr("d", "M0,-5L10,0L0,5")
       //  .attr("fill", "blue")
       ;
@@ -177,7 +179,7 @@ this.svg.append("defs").append("marker")
 
     this.simulation = d3.forceSimulation()
 
-        .force("charge", d3.forceManyBody().strength(-1000))
+        .force("charge", d3.forceManyBody().strength(-2000))
         .force("link", d3.forceLink().id(d => d.id).distance(200))
         .force("x", d3.forceX())
         .force("y", d3.forceY())
@@ -287,7 +289,7 @@ this.svg.append("defs").append("marker")
                     .join("path")
                     //Exponentially scale the line so that weights dramatically affect its visibility
                     .attr("stroke-width", d => 2.7^(9*d.weight))
-                    .attr("marker-end", "url(#marker)")
+                    // .attr("marker-end", d => `url(${new URL(`#arrow-${d.source}`, location)})`)
                        .attr("fill", "none")
       //                   .join("path")
       .attr("stroke", d => color(d.source.id));
@@ -300,7 +302,7 @@ this.svg.append("defs").append("marker")
                 .join(enter => enter.append("text").text(d => d.id)       
                 .style('font-size', '40px')
                 .style('font-family', '"Open Sans", sans-serif')
-                .style('font-weight', '1000'));
+                .style('font-weight', '600'));
                 
                 //add link labels to graph
                 ogGraph.linkLabel = ogGraph.linkLabel

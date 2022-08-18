@@ -120,9 +120,9 @@ maxApi.addHandlers({
                     //build link
 
                     //convert number into notenames
-                    stateNote = (tonal.Note.fromMidi(state+48));
+                    stateNote = (tonal.Note.fromMidi(state));
                     // tonal.Note.pc
-                    iNote = (tonal.Note.fromMidi(i+48))
+                    iNote = (tonal.Note.fromMidi(i))
                     // tonal.Note.pc(tonal.Note.fromMidi(i+48));
 
                     let link = {source: stateNote, target: iNote, weight: probs[i]};
