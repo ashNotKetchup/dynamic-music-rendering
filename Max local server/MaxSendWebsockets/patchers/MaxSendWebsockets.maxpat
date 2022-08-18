@@ -264,7 +264,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 58.0, 155.0, 891.0, 480.0 ],
+						"rect" : [ 112.0, 182.0, 891.0, 480.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -3150,7 +3150,7 @@
 					"numoutlets" : 2,
 					"outlettype" : [ "", "" ],
 					"patching_rect" : [ 661.536202486296133, 889.155021846294403, 68.0, 22.0 ],
-					"text" : "zl.group 48"
+					"text" : "zl.group 32"
 				}
 
 			}
@@ -3253,7 +3253,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 211.0, 248.450941801071167, 158.000003218650818, 22.0 ],
-					"text" : "dictionary u527002021"
+					"text" : "dictionary u621003083"
 				}
 
 			}
