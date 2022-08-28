@@ -1,203 +1,135 @@
-const maxApi = require("max-api");
-var _ = require('lodash');
-var tonal = require('tonal');
-const { max } = require("lodash");
+/*
+This program converts a dictionary of markov data into a useful object for data visualisation in D3.js 
 
-const NODE_ID = "current-node.dict";
-const LINK_ID = "current-link.dict";
+Ashley Noel-Hirst 2022
+*/
+
+const Max = require("max-api");             // max api
+var _ = require('lodash');                  // utility library
+var tonal = require('tonal');               // musical data library
+
 const DATA_ID = "current-data.dict";
-const DICT_ID = "";
 const MARKOV_ID = "markovDict.dict";
-// Used for storing the initial value
+
+// Used for storing the initial object
 let initialDict = {};
 
-//array used for storing all collected dicts
+//array used for storing all collected data
 let links = [];
 let nodes = [];
 let data ={};
 
-//Example object structure:
+//Unused, but yet another example object structure. We're making something that will look like this:
 const graph1 = ({
     nodes: [
       {id: "a"},
       {id: "b"},
       {id: "hello I'm here to test u"}
     ],
-    links: [{source: "a", target: "b"},]
+    links: [{source: "a", target: "b", weight: 0.8},]
   })
 
 
-// Getting and setting dicts is an asynchronous process and the API function
+// Async Resources:
+//Getting and setting dicts is an asynchronous process and the API function
 // calls all return a Promise. We use the async/await syntax here in order
-// to handle the async behaviour gracefully.
+// to handle the async behaviour without weirdness
 //
-// Want to learn more about Promised and async/await:
+// More info here
 //		* Web Fundamentals intro to Promises: https://developers.google.com/web/fundamentals/primers/promises
 //		* Promises Deep Dive on MDN: https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous/Promises
 //		* Web Fundamentals on using async/await and their benefits: https://developers.google.com/web/fundamentals/primers/async-functions
 //		* Async Functions on MDN: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function
 
-maxApi.addHandlers({
-	// set: async (path, value) => {
-	// 	const dict = await maxApi.updateDict(DICT_ID, path, value);
-	// 	await maxApi.outlet(dict);
-	// },
+Max.addHandlers({
 
-	//update the dict with our info
+	//update the dict with our initial info
 	reset: async () => {
-		const dict = await maxApi.setDict(DATA_ID, initialDict);
-		await maxApi.outlet(dict);
-	},
-	// show: async () => {
-	// 	const dict = await maxApi.getDict(DICT_ID);
-	// 	await maxApi.outlet(dict);
-	// },
-
-
-	addLink: async () => {
-		const link = await maxApi.getDict(LINK_ID);
-		if (await links.some((x)=> _.isEqual(x, link))==false){
-		await links.push(link);
-
-		//add this array to the obj
-		initialDict.links = links;
-		}
-				else{
-			await maxApi.post('been there buddy!');
-		}
-		await maxApi.outlet(links);
-		// await maxApi.post(links);
+		const dict = await Max.setDict(DATA_ID, initialDict);
+		await Max.outlet(dict);
 	},
 
-	//add node function, need to refactor into class method?
-	addNode: async () => {
-		const node = await maxApi.getDict(NODE_ID);
-		//check if dict object is already in array nodes
-		if (await nodes.some((x)=> _.isEqual(x, node))==false){
-			//if not, add it to the array of nodes, and post the number of nodes
-            //maxApi.post(
-		await nodes.push(node);
-
-
-		//add this array to the obj
-		initialDict.nodes=nodes;
-
-		//send out list
-		await maxApi.outlet(nodes);
-		}
-		else{
-			await maxApi.post('been there buddy!');
-		}
-		
-	},
-
-    link: ()=>{
-        maxApi.post(links);
-    },
-
+    /*
+    Parse data on bang, 
+    turns lists of states and weights to 
+    lists of unique nodes and weighted links
+    */
     bang: async () =>{
-        const markov = await maxApi.getDict(MARKOV_ID);
-        const stateList = await Object.keys(markov.transitions);
+    
+        //fetch the formatted markov data
+        const markov = await Max.getDict(MARKOV_ID);
 
-      //make a weighted link for every connection (unidirectional for now)
-      transitions = await markov.transitions;
+        //make a weighted link for every connection (unidirectional for now)
+        transitions = await markov.transitions;
 
-      //remove null link
+        //remove null link
         delete transitions.null;   
 
-      //wipe everything before restart
-      nodes = [];
-      links = [];
-        for (const [state, probs] of Object.entries(transitions)) {
-            //for the key object pairs
-        // maxApi.post(`${state}: ${probs}`);
+        //wipe everything before re-assignment
+        nodes = [];
+        links = [];
 
-        //hardcoded to run states as numbers from 0 upwards, so i isnt just an index. This means that we cant use symbolic states now...
-            //not checking for repeats since we reset eachtime, and it loops through a matrix...
+        /*
+        loop through the key object pairs of the form:
+        'transition label, weightings'
+        */
+        for (const [state, probs] of Object.entries(transitions)) {
+        
+            /*
+            Unfortunately, max's markov object is hardcoded to run states as numbers from 0 upwards
+            so, 'i' isnt just an index. This means that we can't use symbolic states for now...only numbers
+            */
+
+            //Loop through the relevant weightings for each label, add links where the weight>0
             for (let i = 0; i < probs.length-2; i++){
                 
                 if (probs[i]>0){
-                    //build link
-
-                    //convert number into notenames
+                    //convert numbers into notenames
                     stateNote = (tonal.Note.fromMidi(state));
-                    // tonal.Note.pc
                     iNote = (tonal.Note.fromMidi(i))
-                    // tonal.Note.pc(tonal.Note.fromMidi(i+48));
 
+                    //create a link between the current state and the state it might transition to
                     let link = {source: stateNote, target: iNote, weight: probs[i]};
                     links.push(link);
                 }
-                // maxApi.post("statelist " + stateList[i])
             }
-		// await maxApi.post(links);
-
-
-                // }
-            // }
-        
+		////Uncomment for Debug... Post links as we :
+        //await Max.post(links);        
         }
+        ////Uncomment for Debug... Post links when done:
+        //await Max.post(links);
 
-
-        await maxApi.post(links);
-
-        //make a node for each possible state needed
-        //sources first
+        //make a node for each possible state needed 
         await links.forEach(e => {
-            //check if dict object is already in array nodes
-            
+
+            //check if element is already in array of nodes
             if (nodes.some((x)=> _.isEqual(x.id, e.source))==false){
-            //if not, add it to the array of nodes, and post the number of nodes, not sure about format
-            //currently going for a list of objs {id: "id"}
-             maxApi.post(nodes.push({id: e.source}));
-
-            // //add this array to the obj
-            // initialDict.nodes=nodes;
+                //if not, add it to the array of nodes, and post the number of nodes to console
+                Max.post(nodes.push({id: e.source}));
             }
             //iff already in use,
             else{
-                 maxApi.post('been there buddy!');
+                ////DEBUGGING...send error
+                //  Max.post('been there buddy!');
             }
-        })
+        });
+        ////DEBUGGING...post the resultant list
+        //   await Max.post(nodes);
 
-        await links.forEach(e => {
-            //check if dict object is already in array nodes
-            
-            if (nodes.some((x)=> _.isEqual(x.id, e.target))==false){
-            //if not, add it to the array of nodes, and post the number of nodes, not sure about format
-            //currently going for a list of objs {id: "id"}
-             maxApi.post(nodes.push({id: e.target}));
+    //Construct our object
+    data = {nodes: nodes, links: links};
 
-            // //add this array to the obj
-            // initialDict.nodes=nodes;
-            }
-            //iff already in use,
-            else{
-                 maxApi.post('been there buddy!');
-            }
-        })
-        
-        
-        ;
-        //post the resultant list
-    //   await maxApi.post(nodes);
-
-
-data = {nodes: nodes, links: links};
-
-const dict = await maxApi.setDict(DATA_ID, data);
-await maxApi.outlet(dict);
-
-await maxApi.outlet("Reload")
-
-// maxApi.outlet(data);
+    //Set object as dictionary for modification/transportation by Max
+    const dict = await Max.setDict(DATA_ID, data);
+    await Max.outlet(dict);
+    await Max.outlet("Reload")
     }
 
 });
 
-// We use this to store the initial value of the dict on process start
+// Store the initial value of the dict on process start
 // so that the call to "reset" and reset it accordingly
-const main = async () => { initialDict = await maxApi.getDict(DATA_ID); };
+const main = async () => { initialDict = await Max.getDict(DATA_ID); };
 main();
 
 

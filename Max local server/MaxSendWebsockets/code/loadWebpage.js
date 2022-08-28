@@ -1,3 +1,13 @@
+/*
+This program loads live, hot-reloading server in the browser, 
+
+Make sure that the index.html file is in the same directory as this js file!
+
+This starter code is adapted from the lovely folks at live-server (https://www.npmjs.com/package/live-server)
+I've changed this to suit this project, but I left in optional params if you want to change anything!
+:)
+*/
+
 var liveServer = require("live-server");
 
 var params = {
