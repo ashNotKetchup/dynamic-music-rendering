@@ -9,6 +9,7 @@ I've changed this to suit this project, but I left in optional params if you wan
 */
 
 var liveServer = require("live-server");
+const Max = require('max-api');	
 
 var params = {
 	port: 8080, // Set the server port. Defaults to 8080.
