@@ -100,8 +100,8 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 388.0, 152.0, 16.0, 19.0 ],
-					"text" : "H"
+					"patching_rect" : [ 388.0, 152.0, 29.5, 19.0 ],
+					"text" : "B"
 				}
 
 			}

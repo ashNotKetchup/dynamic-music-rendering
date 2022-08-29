@@ -1,14 +1,9 @@
-// Load data:
+// Load and visualise data using D3.JS
 
 /*
-  WebSocket connection Script
-  Uses standard W3C WebSocket API, not socket.io API
-  Connects to a local websocket server
-
-  created 7 Jan 2021
-  modified 17 Jan 2021
-  by Tom Igoe
+  WebSocket connection Script, heavily modified from Tom Igoe (https://tigoe.com/)
 */
+
 const serverURL = 'ws://localhost:8080';
 
 let socket;
@@ -21,12 +16,12 @@ let connectButton;
 function setup() {
   // get all the DOM elements that need listeners:
   incomingSpan = document.getElementById('incoming');
-  // outgoingText = document.getElementById('outgoing');
   connectionSpan = document.getElementById('connection');
   connectButton = document.getElementById('connectButton');
   // set the listeners:
-  // outgoingText.addEventListener('change', sendMessage);
   connectButton.addEventListener('click', changeConnection);
+
+  //Start a websocket connection
   openSocket(serverURL);
 }
 
@@ -84,12 +79,13 @@ function sendMessage() {
 window.addEventListener('load', setup);
 
 
-//////
-
+/*
+Visualisation in D3, heavily modified from Mike Bostock's work on force-directed network graphs (https://observablehq.com/@mbostock)
+*/
 
 //Select which data I want:
 
-// define three test datapoints
+// Dev/Debug...define three test datapoints
 const graph1 = ({
     nodes: [
       {id: "a"},
@@ -124,50 +120,29 @@ const graph3 = ({
 
 const graphs = {1: graph1, 2: graph2, 3: graph3};
 
-//load json asynchronously
-// const jsonData= require('./data.json'); 
-// console.log(jsonData);
-
-// console.log(require('/data.json'));
-
-// fetch("./students.json")
-// .then(response => {
-//    return response.json();
-// })
-// .then(jsondata => console.log(jsondata));
-
-
 //D3 Stuff
 
 let color = d3.scaleOrdinal(d3.schemeTableau10);
 
+//Create a class for the graph
 class MyGraph{
-    constructor(){ 
-
-    //Arc Function:
-
-
-
-    //create svg
-
-    // console.log('creating svg')
+    constructor(){
+    //Create svg
     this.svg = d3.select("svg");
     // Per-type markers, as they don't inherit styles.
-this.svg.append("defs").append("marker")
-    .attr("id", "marker")
-    .attr("viewBox", "0 -5 10 10")
-    .attr("refX", 15)
-    .attr("refY", -1.5)
-    .attr("markerWidth", 6)
-    .attr("markerHeight", 6)
-    .attr("orient", "auto")
-    .append("path")
-    .attr("fill", color)
-    .attr("d", "M0,-5L10,0L0,5")
-    // .attr("d", "M0,-5L10,0L0,5")
-      //  .attr("fill", "blue")
-      ;
+    this.svg.append("defs").append("marker")
+        .attr("id", "marker")
+        .attr("viewBox", "0 -5 10 10")
+        .attr("refX", 15)
+        .attr("refY", -1.5)
+        .attr("markerWidth", 6)
+        .attr("markerHeight", 6)
+        .attr("orient", "auto")
+        .append("path")
+        .attr("fill", color)
+        .attr("d", "M0,-5L10,0L0,5");
 
+    //SVG size based on browser window size
     this.width = window.innerWidth;
     this.height = window.innerHeight;
 
@@ -176,37 +151,41 @@ this.svg.append("defs").append("marker")
         .attr("height", this.height)
         .attr("viewBox", [-this.width / 2, -this.height / 2, this.width, this.height]);
     
-
+    //A D3 Library for repelling nodes from eachother    
     this.simulation = d3.forceSimulation()
-
         .force("charge", d3.forceManyBody().strength(-2000))
         .force("link", d3.forceLink().id(d => d.id).distance(200))
         .force("x", d3.forceX())
         .force("y", d3.forceY())
-        //on tick move the simulation forward
+        //on tick move the simulation forward (with the below computations)
         .on("tick", ()=>{
+            //A node is a dot, representing one data point
             this.node.attr("cx", d => d.x)
                 .attr("cy", d => d.y);
 
+            //A line connects two datapoints
             this.link.attr("x1", d => d.source.x)
                 .attr("y1", d => d.source.y)
                 .attr("x2", d => d.target.x)
                 .attr("y2", d => d.target.y)
                 .attr("d", this.linkArc);
 
-            //get position and pass it to text
-
+            //Get Node position and pass it to text, so they stay together
             this.label.attr("x", d=> d.x)
             .attr("y", d => d.y);
 
-            //link label position is at the midpoint of the line between target and source
+            /*
+            Currently unimplemented in my data, but you can add it if you want!?
+            This link-label adds a transition condition, placed midway across the length of a link
+            link-label position is at the midpoint of the line between target and source
+            */
             this.linkLabel.attr("x", d=> (d.source.x+d.target.x)/2)
             .attr("y", d=> (d.source.y+d.target.y)/2);
             }
         );
 
     
-
+    //Add an actual/visual line to the data structure known as "link"
     this.link = this.svg.append("g")
         .attr("stroke", "#000")
         .attr("stroke-width", 1.5)
@@ -215,163 +194,123 @@ this.svg.append("defs").append("marker")
       // .attr("d", "M0,-5L10,0L0,5");
 
 
-
+    //Add a dot for the node
     this.node = this.svg.append("g")
         .attr("stroke", "#fff")
         .attr("stroke-width", 1.5)
         .selectAll("circle");
 
-    //define labels
-    this.label = this.svg.append("g")
-        
+    //Add text for the defined node label
+    this.label = this.svg.append("g")  
             .selectAll("text");
 
-
-  //define a link label, at the midpoint of the link, added to the svg, and pulling some data from the link obj
-  //for now we can just reference the target
-  //Adding elements to sim:
-  // define with this's, append to svg and select all()
-  // add to the function to update the data within svg plus
-  // add tick sim definition
-  // add to interpolation/update method
-
-  //define link-label
-
+    //Add text for a link-label
     this.linkLabel = this.svg.append("g")
     .selectAll("text");
 
-        // console.log("svg outside", this.svg)
+  /*
+  Notes if you want to add your own data structures to this...
+  
+    Adding elements to sim:
+    define with this's, append to svg and select all()
+    add to the function to update the data within svg plus
+    add tick sim definition
+    add to interpolation/update method
 
+  */
 
-    //defining a method within what was formerly the chart class
-        //after all the hullabuloo above, this adds an update function into the SVGPlus
-        //by merging the svg.node object with an object which contains only an update function
-        //this update function takes an object input of the form {nodes, links} and updates the graph
+  /*
+    defining a method within what was formerly the chart class
+    after all the hullabuloo above, this adds an update function into the SVGPlus
+    by merging the svg.node object with an object which contains only an update function
+    this update function takes an object input of the form {nodes, links} and updates the graph
+  */
+
     this.svgPlus = Object.assign(this.svg.node(), {
                 update(ogGraph, {nodes, links}) {
-                    //cant use "this" within the function
-                    //cause we're just appending it to the obj
-                    // so theyll become undefined
-                    //instead, I feed the graph to itself and pull all the data from there
-                    
-                    // LOGS:
-                    // console.log(ogGraph.svg);
-
-                    // console.log("node data: ", ogGraph.node
-                    // .data(nodes, d => d.id));
-
-
+                   /*
+                    Note for anyone trying to edit this...cant use "this" within the function
+                    cause we're just appending it to the obj, so theyll become undefined
+                    instead, I feed the graph to itself and pull all the data from there
+                  */
                     //define transition:
                     const t = ogGraph.svg.transition().duration(750);
 
-                // Make a shallow copy to protect against mutation, while
-                // recycling old nodes to preserve position and velocity.
-                const old = new Map(ogGraph.node.data().map(d => [d.id, d]));
-                nodes = nodes.map(d => Object.assign(old.get(d.id) || {}, d));
-                links = links.map(d => Object.assign({}, d));
+                    // Make a shallow copy to protect against mutation, while
+                    // recycling old nodes to preserve position and velocity.
+                    const old = new Map(ogGraph.node.data().map(d => [d.id, d]));
+                    nodes = nodes.map(d => Object.assign(old.get(d.id) || {}, d));
+                    links = links.map(d => Object.assign({}, d));
 
-                ogGraph.simulation.nodes(nodes);
-                ogGraph.simulation.force("link").links(links);
+                    //Update sim data
+                    ogGraph.simulation.nodes(nodes);
+                    ogGraph.simulation.force("link").links(links);
 
-                //pause, add and then restart the sim?
-                ogGraph.simulation.alpha(1).restart();
+                    //pause, add and then restart the sim
+                    ogGraph.simulation.alpha(1).restart();
 
-                ogGraph.node = ogGraph.node
-            
+                    //Methods if data updates (using data.join enter for adding and removing)
+                    ogGraph.node = ogGraph.node
                     .data(nodes, d => d.id)
                     .join(enter => enter.append("circle")
                     .attr("r", 15)
                     .attr("fill", d => color(d.id)))
                     .attr("fill-opacity", 0.7);
                     
-                ogGraph.link = ogGraph.link   
-                .data(links, d => `${d.source.id}\t${d.target.id}`)
+                    ogGraph.link = ogGraph.link   
+                    .data(links, d => `${d.source.id}\t${d.target.id}`)
                     .join("path")
                     //Exponentially scale the line so that weights dramatically affect its visibility
                     .attr("stroke-width", d => 2.7^(9*d.weight))
-                    // .attr("marker-end", d => `url(${new URL(`#arrow-${d.source}`, location)})`)
-                       .attr("fill", "none")
-      //                   .join("path")
-      .attr("stroke", d => color(d.source.id));
+                    .attr("fill", "none")
+                    .attr("stroke", d => color(d.source.id));
                     
-
-                //add labels to the graph
-                ogGraph.label = ogGraph.label
-                //needs to reference the specific data to update on change
-                .data(nodes, d=> d.id)
-                .join(enter => enter.append("text").text(d => d.id)       
-                .style('font-size', '40px')
-                .style('font-family', '"Open Sans", sans-serif')
-                .style('font-weight', '600'));
+                    ogGraph.label = ogGraph.label
+                    .data(nodes, d=> d.id)
+                    .join(enter => enter.append("text").text(d => d.id)       
+                    .style('font-size', '40px')
+                    .style('font-family', '"Open Sans", sans-serif')
+                    .style('font-weight', '600'));
                 
-                //add link labels to graph
-                ogGraph.linkLabel = ogGraph.linkLabel
-                .data(links, d=> d.target.id)
-                // .join(enter => enter.append("text").text(d => d.weight));
+                    //add link labels to graph
+                    ogGraph.linkLabel = ogGraph.linkLabel
+                    .data(links, d=> d.target.id)
+                    //// to add link-labels, do something like...
+                    //.join(enter => enter.append("text").text(d => d.weight));
                 
                 }
             });
     }
 
+    //Define a function so the links are nice and curly
     linkArc(d) {
-      // console.log("link called" + d.source.x)
-  const r = Math.hypot(d.target.x - d.source.x, d.target.y - d.source.y);
-  return `
-    M${d.source.x},${d.source.y}
-    A${r},${r} 0 0,1 ${d.target.x},${d.target.y}
-  `;
-}
-
-        // // Terminate the force layout when this cell re-runs.
-        // invalidation.then(() => simulation.stop());
-      
-
-        
-    
+      const r = Math.hypot(d.target.x - d.source.x, d.target.y - d.source.y);
+      return `
+        M${d.source.x},${d.source.y}
+        A${r},${r} 0 0,1 ${d.target.x},${d.target.y}
+      `;
+    }
 };
 
-
-
+//Bridging the gap between WS and D3...A function to update graph when called
 function updateDataAndGraph(selection){
-    // select graph data from radio
-    // selection = document.querySelector('input[name="radio"]:checked').value;
-    // console.log(selection);
-
-    //select data from this range
     graph = selection;
 
-
-    // Function LOGS:
-    //name the graph
-    console.log(`We're loading graph ${selection} real quicksie`);
-    //test we loaded the right stuff? console.log(graph.links[1]); = undef, b->c, undef
-    console.log("graph: ", selection, " is ", graph);
-
     console.log('Update output with:', graf.svgPlus.update(graf, graph));
-    // drawChart();
 
     // I need to call the bloody function huh?
     graf.svgPlus.update(graf, graph);
 }
-// console.log("graph", graf.svgPlus.update(graf,graph));
-// console.log("graph ", graf);
 
-//initial call, is also called as a callback
-// updateDataAndGraph();
-
-
-//define my graph to render to, redo this on window resize...or just refresh?
+//define my graph to render to, if wanting dynamism, set webpage to recall this/or to reload on resize
 graf = new MyGraph();
 
-//define my selection
-//initialise
-let initSelection = 2;
-// let graph = graphs[initSelection];
-// console.log(graph);
+//Call a default graph to load with
 updateDataAndGraph(graph2);
 
 
-//Create a selector to switch between data, then call update function with graph selection (1-3) as argument
+//For interactive webpages, not this max implementation
+// selector to switch between data, then call update function with graph selection (1-3) as argument
 let radioButtons = document.querySelectorAll('input[name="radio"]');
 radioButtons = addEventListener("click", () => {
     updateDataAndGraph(document.querySelector('input[name="radio"]:checked').value);
