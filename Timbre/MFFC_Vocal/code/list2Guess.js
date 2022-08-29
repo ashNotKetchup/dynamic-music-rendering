@@ -28,6 +28,8 @@ Max.addHandler("Ana", (timer) => {
 });
 
 /*
+Output lowest score.
+
 Golf rules
 In this iteration of the game, we want the lowest score
 Change the directions of the inequalities to invert this
