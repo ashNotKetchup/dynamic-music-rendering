@@ -41,6 +41,29 @@
 		"boxes" : [ 			{
 				"box" : 				{
 					"fontname" : "Ableton Sans Light",
+					"fontsize" : 36.0,
+					"id" : "obj-2",
+					"maxclass" : "comment",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 888.832566301506859, 16.79359480993395, 408.0, 50.0 ],
+					"presentation" : 1,
+					"presentation_rect" : [ 495.958416739090126, 0.0, 224.410176597305053, 50.0 ],
+					"saved_attribute_attributes" : 					{
+						"textcolor" : 						{
+							"expression" : "themecolor.theme_locked_bgcolor"
+						}
+
+					}
+,
+					"text" : "MF...Whom?",
+					"textcolor" : [ 0.898039, 0.898039, 0.898039, 1.0 ]
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"fontname" : "Ableton Sans Light",
 					"fontsize" : 24.0,
 					"id" : "obj-11",
 					"maxclass" : "comment",
@@ -1217,7 +1240,7 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
 									"patching_rect" : [ 81.0, 159.0, 29.5, 22.0 ],
-									"text" : "100"
+									"text" : "30"
 								}
 
 							}
@@ -2434,13 +2457,13 @@
 , 							{
 								"box" : 								{
 									"id" : "obj-19",
-									"linecount" : 9,
+									"linecount" : 3,
 									"maxclass" : "message",
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
 									"patching_rect" : [ 162.446159136054973, 165.909091234207153, 181.0, 129.0 ],
-									"text" : "-246.668718 12.48229 -16.167846 7.462291 7.837887 1.878742 6.732884 5.340944 2.226324 2.913971 0.976364 0.187273 -1.272039 -3.959795 -1.335486 -3.648578 -3.752369 -1.24415 0.283404 1.459729 -2.159617 -0.461066 1.289921 1.586199 0.415912 0.650499"
+									"text" : "-1980.036095 -0. 0. -0. 0. -0. 0. -0. 0. -0. 0. -0. -0. -0. 0. -0. 0. -0. -0. 0. -0. -0. -0. 0. 0. -0."
 								}
 
 							}
@@ -3503,7 +3526,7 @@
 					"numoutlets" : 1,
 					"offset" : [ 0.0, 0.0 ],
 					"outlettype" : [ "bang" ],
-					"patching_rect" : [ 416.888527599037161, 274.222277887580958, 321.0, 120.186815313579473 ],
+					"patching_rect" : [ 416.888527599037161, 274.222277887580958, 400.0, 220.0 ],
 					"presentation" : 1,
 					"presentation_rect" : [ 842.101132659571817, 529.892392418921872, 339.141599571149868, 155.693087238227236 ],
 					"viewvisibility" : 1
@@ -3533,6 +3556,8 @@
 					"saved_object_attributes" : 					{
 						"autostart" : 0,
 						"defer" : 0,
+						"node_bin_path" : "",
+						"npm_bin_path" : "",
 						"watch" : 0
 					}
 ,
@@ -3564,11 +3589,11 @@
 					"fontname" : "Ableton Sans Light",
 					"fontsize" : 16.0,
 					"id" : "obj-1",
-					"linecount" : 10,
+					"linecount" : 11,
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 701.370790362937896, 594.109601197799748, 156.0, 199.0 ],
+					"patching_rect" : [ 701.370790362937896, 594.109601197799748, 156.0, 218.0 ],
 					"presentation" : 1,
 					"presentation_linecount" : 5,
 					"presentation_rect" : [ 748.671932445146695, -1.310508735563076, 450.0, 103.0 ],
@@ -3579,7 +3604,7 @@
 
 					}
 ,
-					"text" : "This patch tries to guess what sound is playing and how long for\n\nCheck patch instructions here:\n\nCustomise to make your own games!",
+					"text" : "This patch tries to guess what sound is playing and how long for\n\nCheck patch instructions here:\n\nCustomise to make your own timbre games!",
 					"textcolor" : [ 0.898039, 0.898039, 0.898039, 1.0 ]
 				}
 
@@ -3903,7 +3928,7 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ -1.584142494441949, 0.0, 339.305938139858199, 445.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 0.0, 0.0, 491.972601548137618, 275.239127962242151 ],
+					"presentation_rect" : [ 0.0, 0.0, 743.972601548137618, 275.239127962242151 ],
 					"proportion" : 0.5,
 					"rounded" : 0,
 					"saved_attribute_attributes" : 					{
