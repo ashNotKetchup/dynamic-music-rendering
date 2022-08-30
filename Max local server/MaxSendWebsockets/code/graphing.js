@@ -153,8 +153,9 @@ class MyGraph{
     
     //A D3 Library for repelling nodes from eachother    
     this.simulation = d3.forceSimulation()
-        .force("charge", d3.forceManyBody().strength(-2000))
-        .force("link", d3.forceLink().id(d => d.id).distance(200))
+    //Change strength and distance to fit different display sizes (greater=more spread)
+        .force("charge", d3.forceManyBody().strength(-1400))
+        .force("link", d3.forceLink().id(d => d.id).distance(85))
         .force("x", d3.forceX())
         .force("y", d3.forceY())
         //on tick move the simulation forward (with the below computations)
