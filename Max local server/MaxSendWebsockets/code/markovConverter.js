@@ -107,6 +107,12 @@ Max.addHandlers({
                 //if not, add it to the array of nodes, and post the number of nodes to console
                 Max.post(nodes.push({id: e.source}));
             }
+
+            //check targets too? big error source before I think
+            else if (nodes.some((x)=> _.isEqual(x.id, e.target))==false){
+                //if not, add it to the array of nodes, and post the number of nodes to console
+                Max.post(nodes.push({id: e.source}));
+            }
             //iff already in use,
             else{
                 ////DEBUGGING...send error
