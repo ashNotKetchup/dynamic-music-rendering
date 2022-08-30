@@ -603,8 +603,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 1674.666716575622559, 128.166666030883789, 151.0, 47.0 ],
-					"presentation_linecount" : 3,
+					"patching_rect" : [ 1674.666716575622559, 128.166666030883789, 154.0, 47.0 ],
 					"text" : "Can also communicate the notelist over local and remote networks"
 				}
 
@@ -616,7 +615,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 1674.666716575622559, 42.833330154418945, 150.0, 60.0 ],
+					"patching_rect" : [ 1674.666716575622559, 42.833330154418945, 151.0, 60.0 ],
 					"text" : "Can render this in another frontend technology, such as processing, d3 or other html technology"
 				}
 
@@ -791,8 +790,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 56.833333253860474, 399.0, 150.0, 20.0 ],
-									"text" : "E"
+									"patching_rect" : [ 56.833333253860474, 399.0, 150.0, 20.0 ]
 								}
 
 							}
@@ -853,8 +851,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 259.333332777023315, 277.0, 50.0, 22.0 ],
-									"text" : "C"
+									"patching_rect" : [ 259.333332777023315, 277.0, 50.0, 22.0 ]
 								}
 
 							}
@@ -1336,8 +1333,7 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ 98.250277996063232, 296.499996423721313, 86.0, 42.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 24.880726415562599, 65.134084227000528, 72.0, 42.0 ],
-					"text" : "C"
+					"presentation_rect" : [ 24.880726415562599, 65.134084227000528, 72.0, 42.0 ]
 				}
 
 			}
@@ -1713,8 +1709,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 240.0, 565.580248415470123, 50.0, 22.0 ],
-									"text" : "C"
+									"patching_rect" : [ 240.0, 565.580248415470123, 50.0, 22.0 ]
 								}
 
 							}
@@ -1945,7 +1940,7 @@
 					"patching_rect" : [ 838.999983787536621, 398.999998450279236, 343.0, 115.0 ],
 					"presentation" : 1,
 					"presentation_linecount" : 4,
-					"presentation_rect" : [ 492.832566301506859, 317.79359480993395, 310.0, 151.0 ],
+					"presentation_rect" : [ 492.832566301506859, 317.79359480993395, 316.0, 151.0 ],
 					"text" : "G E C# E C# C# A G C# A G G E C# C# A G G E C# G E C# E C# C# A G G",
 					"textcolor" : [ 0.0, 0.0, 0.0, 1.0 ]
 				}

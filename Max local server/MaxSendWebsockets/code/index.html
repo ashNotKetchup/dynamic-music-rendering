@@ -1,8 +1,4 @@
 <!DOCTYPE <!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
 <html>
     <head>
         <meta charset="utf-8">
@@ -17,82 +13,49 @@
               overflow: hidden;
               position: relative;
             }
-            /* .nodes circle {
-              fill: steelblue;
-              stroke-width: 1;
-              stroke: white;
-              r: 10;
-            } */
-        
-            .links {
+            /* .links {
               stroke: red;
-            }
-          </style>
+            } */
+        </style>
     </head>
     <body>
-        <!--[if lt IE 7]>
-            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
- <div id="main">
-            <div id="container">
-              <svg id="svg"></svg>
-            </div>
-          </div>
-<div id = "Instructions">
-  <h1>Thirty-Two Tones for Ensemble</h1>
-
+      <div id="main">
+        <div id="container">
+          <svg id="svg"></svg>
+        </div>
+      </div>
+      <div id = "Instructions">
+        <h1>Thirty-Two Tones for Ensemble</h1>
+        <!-- <h2>By Ashnotketchup</h2> -->
         <div id = "Leader">
-        <!-- <h1>Ov the Mark</h1>
-        <h2>By Ashnotketchup</h2> -->
         <h2>Leader:</h2>
         <p>1 – Play thirty-two sequential notes, then</p><br/>
         <p>2 – Invite the ensemble to play a number of chords, repeat until they are all in unison</p><br/>
         <p>After the first step has been excecuted, the first two steps may coincide</p> </br>
         </br>
+        </div>
+        <div id = "Ensemble">
+          <h2>Ensemble:</h2>
+          <p>1 – Pick a note on the map</p><br/>
+          <p>2 – On cue, play the note, then</p><br/>
+          <p>3 – Select a new note by following a path the same colour as your current note</p><br/>
+          <p>(In an instance where there is more than one possible path, occasionally favour the larger path)</p></br>
+          <p>Repeat steps two and three until you reach a note with no paths, then repeat step two</p></br>
+          <p>The piece concludes when all players are repeatedly in unison</p></br></br>
+        </div>
       </div>
-
-         <div id = "Ensemble">
-        <!-- <h1>Ov the Mark</h1>
-        <h2>By Ashnotketchup</h2> -->
-        <h2>Ensemble:</h2>
-        <p>1 – Pick a note on the map</p><br/>
-        <p>2 – On cue, play the note, then</p><br/>
-        <p>3 – Select a new note by following a path the same colour as your current note</p><br/>
-        <p>(In an instance where there is more than one possible path, occasionally favour the larger path)</p></br>
-        <p>Repeat steps two and three until you reach a note with no paths, then repeat step two</p></br>
-        <p>The piece concludes when all players are repeatedly in unison</p></br></br>
+      <!-- Load a local or web version of D3 -->
+      <!-- <script src="https://d3js.org/d3.v7.min.js"></script> -->
+      <script src="node_modules/d3/dist/d3.min.js"></script>        
+      <div id ="status">
+        <p>Websocket Status: </p>
+        <p>Connected to server: <span id="connection">false</span><br></p>
+        <input type="button" id="connectButton" value="Connect"><br>
+        <!-- Currently hiding outgoing message box. Reenable if you wanna send data -->
+        <!-- Outgoing message: <input type="text" id="outgoing"><br> -->
+        <p>Incoming message: <span id="incoming"></span><br></p>
       </div>
-      </div>
-        <!-- <br/> -->
-        <!-- <p>Pick a dataset and watch the page respond! -->
-
-        <!-- <script src="https://d3js.org/d3.v7.min.js"></script> -->
-        <script src="node_modules/d3/dist/d3.min.js"></script>
-
-        <!-- selector form -->
-        <!-- <form style="font: 12px var(--sans-serif); display: flex; height: 33px; align-items: center;">
-            <label style="margin-right: 1em; display: inline-flex; align-items: center;">
-              <input type="radio" name="radio" value="1" style="margin-right: 0.5em;" checked> Graph 1
-            </label>
-            <label style="margin-right: 1em; display: inline-flex; align-items: center;">
-              <input type="radio" name="radio" value="2" style="margin-right: 0.5em;"> Graph 2
-            </label>
-            <label style="margin-right: 1em; display: inline-flex; align-items: center;">
-              <input type="radio" name="radio" value="3" style="margin-right: 0.5em;"> Graph 3
-            </label>
-        </form> -->
-        <!--  -->
-        
-        <div id ="status">
-          <p>Websocket Status: </p>
-    <p>Connected to server: <span id="connection">false</span><br></p>
-    <input type="button" id="connectButton" value="Connect"><br>
-    <!-- hide outgoing pls -->
-    <!-- Outgoing message: <input type="text" id="outgoing"><br> -->
-    <p>Incoming message: <span id="incoming"></span><br></p>
-  </div>
-       
-        <script src="graphing.js" ></script> 
-        <!-- async defer the above? -->
+      <!-- load my visualisation script -->
+      <script src="graphing.js" ></script> 
     </body>
 </html>
