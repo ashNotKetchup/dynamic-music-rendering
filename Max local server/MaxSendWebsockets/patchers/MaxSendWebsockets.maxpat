@@ -8964,13 +8964,14 @@
 , 			{
 				"box" : 				{
 					"id" : "obj-89",
-					"linecount" : 2,
+					"linecount" : 3,
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 943.659031510353088, 73.833332419395447, 150.0, 33.0 ],
+					"patching_rect" : [ 943.659031510353088, 73.833332419395447, 150.0, 47.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 25.869229072392272, 149.664150893680585, 287.189132829507344, 20.0 ],
+					"presentation_linecount" : 2,
+					"presentation_rect" : [ 25.869229072392272, 149.664150893680585, 287.189132829507344, 33.0 ],
 					"saved_attribute_attributes" : 					{
 						"textcolor" : 						{
 							"expression" : "themecolor.theme_textcolor"
@@ -8978,7 +8979,7 @@
 
 					}
 ,
-					"text" : "Visualise the transitions between 32 input notes",
+					"text" : "Visualise the transitions between a set of input notes",
 					"textjustification" : 1
 				}
 
