@@ -124,6 +124,7 @@ const graphs = {1: graph1, 2: graph2, 3: graph3};
 
 let color = d3.scaleOrdinal(d3.schemeTableau10);
 
+
 //Create a class for the graph
 class MyGraph{
     constructor(){
@@ -262,9 +263,13 @@ class MyGraph{
                     .data(links, d => `${d.source.id}\t${d.target.id}`)
                     .join("path")
                     //Exponentially scale the line so that weights dramatically affect its visibility
-                    .attr("stroke-width", d => 2.7^(9*d.weight))
+                    // .attr("stroke-width", 2.7)
+
+                    .attr("stroke-width", d => 10*(d.weight**1.5))
+
                     .attr("fill", "none")
-                    .attr("stroke", d => color(d.source.id));
+                    .attr("stroke", d => color(d.source.id))
+                    .attr("stroke-opacity", 0.9);
                     
                     ogGraph.label = ogGraph.label
                     .data(nodes, d=> d.id)
@@ -277,7 +282,8 @@ class MyGraph{
                     ogGraph.linkLabel = ogGraph.linkLabel
                     .data(links, d=> d.target.id)
                     //// to add link-labels, do something like...
-                    //.join(enter => enter.append("text").text(d => d.weight));
+                    // .join(enter => enter.append("text").text(d => d.weight.toFixed(2)));
+                    // .join(enter => enter.append("text").text(d => d.weight.toFixed(2)));
                 
                 }
             });
@@ -295,25 +301,21 @@ class MyGraph{
 
 //Bridging the gap between WS and D3...A function to update graph when called
 function updateDataAndGraph(selection){
-    graph = selection;
-
-    console.log('Update output with:', graf.svgPlus.update(graf, graph));
-
-    // I need to call the bloody function huh?
-    graf.svgPlus.update(graf, graph);
+    graph.svgPlus.update(graph, selection);
+    console.log(selection);
 }
 
 //define my graph to render to, if wanting dynamism, set webpage to recall this/or to reload on resize
-graf = new MyGraph();
+graph = new MyGraph();
 
 //Call a default graph to load with
 updateDataAndGraph(graph2);
 
 
-//For interactive webpages, not this max implementation
-// selector to switch between data, then call update function with graph selection (1-3) as argument
-let radioButtons = document.querySelectorAll('input[name="radio"]');
-radioButtons = addEventListener("click", () => {
-    updateDataAndGraph(document.querySelector('input[name="radio"]:checked').value);
-});
+// //For interactive webpages, not this max implementation
+// // selector to switch between data, then call update function with graph selection (1-3) as argument
+// let radioButtons = document.querySelectorAll('input[name="radio"]');
+// radioButtons = addEventListener("click", () => {
+//     updateDataAndGraph(document.querySelector('input[name="radio"]:checked').value);
+// });
 
