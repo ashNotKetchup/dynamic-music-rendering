@@ -256,7 +256,7 @@ class MyGraph{
                     .data(nodes, d => d.id)
                     .join(enter => enter.append("circle")
                     .attr("r", 15)
-                    .attr("fill", d => color(d.id)))
+                    .attr("fill", d => color(d.chroma)))
                     .attr("fill-opacity", 0.7);
                     
                     ogGraph.link = ogGraph.link   
@@ -268,7 +268,7 @@ class MyGraph{
                     .attr("stroke-width", d => 10*(d.weight**1.5))
 
                     .attr("fill", "none")
-                    .attr("stroke", d => color(d.source.id))
+                    .attr("stroke", d => color(d.chroma))
                     .attr("stroke-opacity", 0.9);
                     
                     ogGraph.label = ogGraph.label

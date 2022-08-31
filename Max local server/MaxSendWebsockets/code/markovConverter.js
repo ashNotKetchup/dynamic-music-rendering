@@ -100,7 +100,7 @@ Max.addHandlers({
                     Max.post("Inc "+ iNote);
 
                     //create a link between the current state and the state it might transition to
-                    let link = {source: stateNote, target: iNote, weight: probs[i]};
+                    let link = {source: stateNote, target: iNote, weight: probs[i], chroma: tonal.Note.chroma(stateNote)};
                     links.push(link);
                 }
 
@@ -127,7 +127,7 @@ Max.addHandlers({
             //check if element is already in array of nodes
             if (nodes.some((x)=> _.isEqual(x.id, e.source))==false){
                 //if not, add it to the array of nodes, and post the number of nodes to console
-                Max.post("This source: " + nodes.push({id: e.source}));
+                Max.post("This source: " + nodes.push({id: e.source, chroma: tonal.Note.chroma(e.source)}));
             }
             //iff already in use,
             else{
@@ -138,7 +138,7 @@ Max.addHandlers({
             //check targets too? big error source before I think
             if (nodes.some((x)=> _.isEqual(x.id, e.target))==false){
                 //if not, add it to the array of nodes, and post the number of nodes to console
-                Max.post("This target: " +nodes.push({id: e.target}));
+                Max.post("This target: " +nodes.push({id: e.target, chroma: tonal.Note.chroma(e.target)}));
             }
             else{
                 ////DEBUGGING...send error
