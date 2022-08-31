@@ -7,6 +7,7 @@ Ashley Noel-Hirst 2022
 const Max = require("max-api");             // max api
 var _ = require('lodash');                  // utility library
 var tonal = require('tonal');               // musical data library
+var includes = require('array-includes');   //includes for <es7
 
 const DATA_ID = "current-data.dict";
 const MARKOV_ID = "markovDict.dict";
@@ -19,15 +20,6 @@ let links = [];
 let nodes = [];
 let data ={};
 
-//Unused, but yet another example object structure. We're making something that will look like this:
-const graph1 = ({
-    nodes: [
-      {id: "a"},
-      {id: "b"},
-      {id: "hello I'm here to test u"}
-    ],
-    links: [{source: "a", target: "b", weight: 0.8},]
-  })
 
 
 // Async Resources:
@@ -62,6 +54,15 @@ Max.addHandlers({
         //make a weighted link for every connection (unidirectional for now)
         transitions = await markov.transitions;
 
+        stateList = await markov.stateList;
+        // let statenotes = [];
+        // await stateList.forEach((e)=>{
+        //     statenotes.push(tonal.Note.fromMidi(e))
+        //     Max.post("ele: "+ e)
+        // })
+        // await Max.post("Statelist: "+  stateList);
+        // await Max.post("Statenotes: "+  statenotes);
+
         //remove null link
         delete transitions.null;   
 
@@ -80,24 +81,45 @@ Max.addHandlers({
             so, 'i' isnt just an index. This means that we can't use symbolic states for now...only numbers
             */
 
+            //(probs[i]>0) && 
             //Loop through the relevant weightings for each label, add links where the weight>0
-            for (let i = 0; i < probs.length-2; i++){
+            //-2 is removing the null data we created at the begining
+            for (let i = 0; i < probs.length; i++){
+                // Max.post("This: "+i)
+                // Max.post("Includes: "+(stateList.some((x)=> (x==i))));
                 
-                if (probs[i]>0){
+                // Max.post("zindex: " + (stateList.indexOf(i) !== -1));
+                //if it has nonZero probability and is in our list of accepted states, make a link
+                if (stateList.some((x)=> (x==i)) && probs[i]>0){
+        
                     //convert numbers into notenames
                     stateNote = (tonal.Note.fromMidi(state));
                     iNote = (tonal.Note.fromMidi(i))
+                    // iNote = i;
+
+                    Max.post("Inc "+ iNote);
 
                     //create a link between the current state and the state it might transition to
                     let link = {source: stateNote, target: iNote, weight: probs[i]};
                     links.push(link);
                 }
+
+                else{
+
+                }
+
+                // if (probs[i]>0){
+                //     // iNote = (tonal.Note.fromMidi(i))
+                //     iNote = i;
+
+                //     Max.post("Prob "+ iNote);
+                // }
             }
 		////Uncomment for Debug... Post links as we :
-        //await Max.post(links);        
+        // await Max.post(links);        
         }
         ////Uncomment for Debug... Post links when done:
-        //await Max.post(links);
+        // await Max.post("after: "+ links);
 
         //make a node for each possible state needed 
         await links.forEach(e => {
@@ -105,9 +127,19 @@ Max.addHandlers({
             //check if element is already in array of nodes
             if (nodes.some((x)=> _.isEqual(x.id, e.source))==false){
                 //if not, add it to the array of nodes, and post the number of nodes to console
-                Max.post(nodes.push({id: e.source}));
+                Max.post("This source: " + nodes.push({id: e.source}));
             }
             //iff already in use,
+            else{
+                ////DEBUGGING...send error
+                //  Max.post('been there buddy!');
+            }
+
+            //check targets too? big error source before I think
+            if (nodes.some((x)=> _.isEqual(x.id, e.target))==false){
+                //if not, add it to the array of nodes, and post the number of nodes to console
+                Max.post("This target: " +nodes.push({id: e.target}));
+            }
             else{
                 ////DEBUGGING...send error
                 //  Max.post('been there buddy!');
@@ -131,5 +163,16 @@ Max.addHandlers({
 // so that the call to "reset" and reset it accordingly
 const main = async () => { initialDict = await Max.getDict(DATA_ID); };
 main();
+
+//Unused, but yet another example object structure. We're making something that will look like this:
+const graph1 = ({
+    nodes: [
+        { id: "a" },
+        { id: "b" },
+        { id: "hello I'm here to test u" }
+    ],
+    links: [{ source: "a", target: "b", weight: 0.8 },]
+})
+
 
 
